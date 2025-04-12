@@ -9,12 +9,8 @@ double binary_search(
     int r1,
     int tot //tot/2
 ) {
-    int p = l1;//(l1+r1)/2;
-    int q =  tot-(p+1)-1;// hallar el medio en el segundo array
-
-    // cout << "p: " << p << endl;
-    // cout << "q: " << q << endl; 
-
+    int p = l1; 
+    int q =  tot-(p+1)-1;
     if(l1<0) {
         p=l1;
         q=tot-1;
@@ -25,11 +21,6 @@ double binary_search(
 
     int c = q<0?INT16_MIN:n2[q];
     int d = q+1>=n2.size()?INT16_MAX:n2[q+1];
-
-    // cout << "a: " << a << endl;
-    // cout << "b: " << b << endl;
-    // cout << "c: " << c << endl;
-    // cout << "d: " << d << endl;
 
     if(a <= d && c <= b) {
         if((n1.size()+n2.size())%2!=0) {
@@ -42,9 +33,9 @@ double binary_search(
     if(a > d) {
         return binary_search(n1,n2,p-1,r1,tot);
     } 
-    //if(c > b) {
-        return binary_search(n1,n2,p+1,r1,tot);
-    //}
+    
+    return binary_search(n1,n2,p+1,r1,tot);
+    
 
 }
 
@@ -58,21 +49,6 @@ double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
     
     int tot = m+n;
     int mid = floor(tot/2);
-
-    // if(nums1[m-1]<=nums2[0]) { // cuando el sorted array es v1 + v2
-    //     int mid_val = mid>=m? nums2[mid-m]:nums1[mid];
-    //     if(tot%2==0){
-    //         int last_mid_val = m-1>=mid? nums2[mid-1-m]:nums1[mid-1];
-    //         return (mid_val+last_mid_val)/2.;
-    //     }  return mid_val;
-    // } else if(nums2[n-1]<=nums1[0]) {
-    //     int mid_val = mid>=n? nums1[mid-n]:nums2[mid];
-    //     if(tot%2==0){
-    //         int last_mid_val = n-1>=mid? nums1[mid-1-n]:nums2[mid-1];
-    //         return (mid_val+last_mid_val)/2.;
-    //     }  return mid_val;
-    // }
-
 
     if(nums1.size()>=nums2.size()) {
         return binary_search(nums2,nums1,(nums2.size()-1)/2,nums2.size()-1,mid);

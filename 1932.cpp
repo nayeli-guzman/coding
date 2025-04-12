@@ -13,7 +13,6 @@ struct TreeNode {
 };
 
 
-
 void merge_aux(TreeNode* node, 
         unordered_map<int,int> &hash,
         vector<TreeNode*> &trees,
