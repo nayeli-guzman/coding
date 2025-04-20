@@ -128,6 +128,7 @@ int binary_searc(vector<vector<int>> cells
 
 }
 */
+
 int latestDayToCross(int row, int col, vector<vector<int>>& cells) {
     //return binary_searc(cells, row,col, 0, cells.size()-1,true);
 
