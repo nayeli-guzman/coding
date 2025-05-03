@@ -6,7 +6,7 @@ const int MOD = 1e9 + 7;
 
 int numberOfCombinations(string num) {
     int n = num.size();
-    if (num[0] == '0') return 0; // ningún num puede empezar con 0
+    if (num[0] == '0') return 0; // ningún número puede empezar con 0
 
     vector<vector<int>> sumi(n + 1, vector<int>(n + 1, 0)); 
     vector<vector<int>> lcp(n + 1, vector<int>(n + 1, 0)); 
@@ -38,7 +38,7 @@ int numberOfCombinations(string num) {
                         long2 = long1;
                     } else {
                         long2 = long1 - 1;
-                    }
+                    } 
                 }
                 curr = sumi[j - 1][long2];
             }

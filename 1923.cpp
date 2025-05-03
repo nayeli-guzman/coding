@@ -82,6 +82,8 @@ int longestCommonSubpath(int n, vector<vector<int>>& paths) {
     while (l <= r) {
         int mid = l + (r - l) / 2;
 
+        // se trbaja en el array mas pequeño y se hace busqueda binaria respecto a su size
+
         if (has_common_hash(mid, paths)) {
             answer = mid;
             l = mid + 1;
