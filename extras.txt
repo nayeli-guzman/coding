@@ -1,2 +1,2 @@
-libro:  https://www.inf.ufes.br/~berilhes/Cursos/TBO2008-1/gusfield.pdf
+libro:  https://dn721809.ca.archive.org/0/items/gusfield-dan-algorithms-on-strings-trees-and-sequences-computer-science-and-comp/Gusfield%2C%20Dan%20-%20Algorithms%20on%20strings%2C%20trees%2C%20and%20sequences_%20computer%20science%20and%20computational%20biology-Cambridge%20Univ.%20Press%20%282009%29.pdf 
 página 7-10
