@@ -10,19 +10,19 @@ using pii = pair<int, int>;
 using vi = vector<int>;
 using umii = unordered_map<int, int>;
 using usi = unordered_set<int>;
+using vvi = vector<vi>;
+
 
 void print(vi v) {
-    for(auto e:v){
-        cout<<e<<" ";
-    }
-    cout<<endl;
+    for(auto e:v) cout<<e<<" "; cout<<endl;
 }
 
 void print(usi s) {
-    for(auto e:s){
-        cout<<e<<" ";
-    }
-    cout<<endl;
+    for(auto e:s) cout<<e<<" "; cout<<endl;
+}
+
+void print(vvi m) {
+    for(auto v:m) print(v); cout << endl;
 }
 
 void solve() {

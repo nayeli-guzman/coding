@@ -25,29 +25,27 @@ void print(vvi m) {
     for(auto v:m) print(v); cout << endl;
 }
 
-int lengthOfLIS(vi v) {
-    int n = v.size();
-    vi dp(n,0);
-    dp[n-1] = 1;
-    for(int i=n-2; i>=0; i--) {
-        int maxi = INT32_MIN;
-        for(int k=i+1; k<n; k++) {
-            if(v[i]<v[k]) {
-                maxi = max(maxi,dp[k]);
+int knapsack(vi weights, vi values, int W) {
+
+    int n=weights.size()+1, m=W+1;
+    vvi dp(n, vi(m, 0));
+
+    for(int i=1; i<n; i++) {
+        for(int j=0; j<m; j++) {
+            if (j<weights[i-1]) {
+                dp[i][j] = dp[i-1][j];
+            } else {
+                dp[i][j] = max(
+                    dp[i-1][j], 
+                    dp[i-1][j - weights[i-1]] + values[i-1]
+                );
             }
         }
-        if(maxi==INT32_MIN) {
-            dp[i] = 1;
-        } else {
-            dp[i] = maxi + 1;
-        }
     }
+    
+    print(dp);
+    return dp[n-1][m-1];
 
-    int res = dp[0];
-    for(auto e:dp) {
-        res = max(res, e);
-    }
-    return res;
 }
 
 int main() {
@@ -55,8 +53,11 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    vi v = {10,9,2,5,3,7,101,18};
-    cout << lengthOfLIS(v);
+    vi v = {1,2,5,6};
+    vi w = {2,3,4,5};
+
+    int W = 8;
+    knapsack(w, v, W);
 
     return 0;
 }
