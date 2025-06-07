@@ -4,6 +4,7 @@
 #include <unordered_set>
 #include <stack>
 #include <queue>
+#include <algorithm>
 
 using namespace std;
 
@@ -41,12 +42,19 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int n;
-    cin>>n;
+    ll a,b,k;
+    cin>>a>>b>>k;
 
-    while(n-->0) {
-        solve();
+    ll i=0, j=1, last=0;
+
+    while(i<k) {
+        if(j%a!=0 && j%b!=0) {
+            i++;
+            last = j;
+        }
+        j++;
     }
+    cout << j-1;
 
     return 0;
 }

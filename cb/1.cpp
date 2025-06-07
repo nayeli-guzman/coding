@@ -24,15 +24,18 @@ using vvc = vector<vc>;
 
 
 
-template<typename T>
-void print(vector<T> v) {
+void print(vi v) {
     for(auto e:v) cout<<e<<" "; cout<<endl;
 }
-template<typename T>
-void print(vector<vector<T>> m) {
-    for(auto v:m) print(v); cout << endl;
+
+void print(usi s) {
+    for(auto e:s) cout<<e<<" "; cout<<endl;
 }
-void solve() {
+
+void solve(int x, int y, int z, int t) {
+    int q=floor(x/t);
+    ll r = q*z;
+    cout << r;
 
 }
 
@@ -41,12 +44,10 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int n;
-    cin>>n;
+    int x, y, z, t; // x: dura el ex, y:cant preg, z: marks, t:solve1quest
+    cin>>x>>y>>z>>t;
 
-    while(n-->0) {
-        solve();
-    }
+    solve(x,y,z,t);
 
     return 0;
 }

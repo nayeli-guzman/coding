@@ -43,9 +43,12 @@ int knapsack(vi weights, vi values, int W) {
         }
     }
     
-    print(dp);
     return dp[n-1][m-1];
 
+}
+
+int minHeightShelves(vector<vector<int>>& books, int shelfWidth) {
+        
 }
 
 int main() {

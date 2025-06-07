@@ -32,8 +32,30 @@ template<typename T>
 void print(vector<vector<T>> m) {
     for(auto v:m) print(v); cout << endl;
 }
-void solve() {
 
+int calculateMinimumHP(vvi& m) {
+    int r = m.size(), c = m[0].size(); 
+    vvi dp(r, vi(c, 0));
+    
+    dp[r-1][c-1] = m[r-1][c-1]>=0 ? 1: abs(m[r-1][c-1])+1;
+
+    for(int i=r-1; i>=0; i--) {
+        for(int j=c-1; j>=0; j--) {
+            if(i==r-1&&j==c-1) continue;
+            int a = i+1>=r ? INT32_MAX : dp[i+1][j];
+            int b = j+1>=c ? INT32_MAX : dp[i][j+1];
+            if(m[i][j]>=min(a,b)) {
+                dp[i][j] = 1;
+            } else {
+                dp[i][j] = -m[i][j] + min(a, b);
+            }
+            
+        }
+    }
+
+    print(dp);
+
+    return dp[0][0];
 }
 
 int main() {
@@ -41,12 +63,10 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int n;
-    cin>>n;
+    vvi m = {{0,0,0},{1,1,-1}};
 
-    while(n-->0) {
-        solve();
-    }
+    cout <<calculateMinimumHP(m);
+
 
     return 0;
 }

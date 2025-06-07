@@ -41,11 +41,14 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int n;
-    cin>>n;
+    int n, d, i, f;
+    cin>>n>>d>>i>>f;
 
-    while(n-->0) {
-        solve();
+    for(int i=0; i<n; i++) {
+        for(int j=0; j<n; j++) {
+            double p;
+            cin
+        }
     }
 
     return 0;

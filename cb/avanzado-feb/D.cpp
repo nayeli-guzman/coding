@@ -21,6 +21,7 @@ using vpii = vector<pii>;
 using vvpii = vector<vpii>;
 using vc = vector<char>;
 using vvc = vector<vc>;
+using vusi = vector<usi>;
 
 
 
@@ -41,12 +42,47 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    int n;
-    cin>>n;
+    int n, m, x;
+    cin>>n>>m;
+    vusi master(n+1); // master[i] -> las especies que dependen de i
+    vi count(n+1, 0); // count[i] -> cant de especies de las que depende i
 
-    while(n-->0) {
-        solve();
+    while(m-->0) {
+        int e, d;
+        cin>>e>>d;
+        master[d].insert(e);
+        count[e]++;
     }
+
+    cin>>x;
+
+    qi queue;
+    usi set;
+    queue.push(x);
+    int res =0;
+    count[x]--;
+
+    while (!queue.empty()) {
+
+        int curr = queue.front();
+        queue.pop();
+        set.insert(curr);
+
+        if(count[curr]>0) {
+            continue;
+        }
+
+        for(auto dep:master[curr]) {
+            count[dep]--;
+            queue.push(dep);
+            
+        }
+        res++;
+    }
+    
+    if(res==0) cout << res;
+    else cout << res-1;
+    
 
     return 0;
 }
