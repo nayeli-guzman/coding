@@ -1,0 +1,104 @@
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <stack>
+#include <queue>
+
+using namespace std;
+
+using ll = long long;
+using pii = pair<int, int>;
+using vi = vector<int>;
+using vb = vector<bool>;
+using vvi = vector<vector<int>>;
+using vvb = vector<vector<bool>>;
+using umii = unordered_map<int, int>;
+using usi = unordered_set<int>;
+using qi = queue<int>;
+using si = stack<int>;
+using spii = stack<pii>;
+using qpii = queue<pii>;
+using vpii = vector<pii>;
+using vvpii = vector<vpii>;
+using vc = vector<char>;
+using vvc = vector<vc>;
+
+
+
+template<typename T>
+void print(vector<T> v) {
+    for(auto e:v) cout<<e<<" "; cout<<endl;
+}
+template<typename T>
+void print(vector<vector<T>> m) {
+    for(auto v:m) print(v); cout << endl;
+}
+
+bool subset_sum(const vi& values, int W) {
+    int n = (int)values.size();
+    vvb dp(n + 1, vb(W + 1, false));
+
+    for (int i = 0; i <= n; ++i) dp[i][0] = true;
+
+    for (int i = 1; i <= n; ++i) {
+        int w = values[i - 1];           
+        for (int j = 1; j <= W; ++j) {    
+            dp[i][j] = dp[i - 1][j] || (j >= w && dp[i - 1][j - w]);
+        }
+    }
+
+    print(dp);
+
+    //if (!dp[n-1][m-1]) return -1;
+
+    vi pick;
+    int i=n, j=W;
+    while (i > 0 && j >= 0) {
+        if (dp[i - 1][j]) { // retroceder hast el primero
+            i--;
+        } else {
+            cout << "i: " << i << endl;
+            int v = values[i-1];
+            // cout << v << " " << i-1 << endl;
+            pick.push_back(v); //i-1
+            j = j - v;
+            i--;
+        }
+    }
+
+    print(pick);
+    
+    return 2;
+
+}
+
+
+
+void solve() {
+
+    // vi values = {1, 2, 2, 3};
+    vi values = {1, 2, 2, 3, 6};
+    int w = 7;
+    subset_sum(values,  w );
+
+}
+
+int main() {
+
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    // int n;
+    // cin>>n;
+
+    // while(n-->0) {
+    //     solve();
+    // }
+
+    solve();
+
+    return 0;
+}
+
+

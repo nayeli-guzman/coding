@@ -39,6 +39,41 @@ states:
 2. covered but not having a cam
 
 */
+
+
+static constexpr int INF = 1000000;
+
+    // returns {dp0, dp1, dp2} for subtree rooted at node:
+    // dp0 = min cams if node is NOT covered
+    // dp1 = min cams if node IS covered, but no cam at node
+    // dp2 = min cams if there's a cam at node
+std::array<int,3> dfs(TreeNode* node) {
+    if (!node) return {0, 0, INF};
+
+    auto L = dfs(node->left);
+    auto R = dfs(node->right);
+
+    int dp0 = L[1] + R[1];
+    int dp2 = 1
+        + std::min({L[0], L[1], L[2]})
+        + std::min({R[0], R[1], R[2]});
+
+    int coverByLeft  = L[2] + std::min(R[1], R[2]);
+    int coverByRight = R[2] + std::min(L[1], L[2]);
+    
+    int dp1 = std::min(coverByLeft, coverByRight);
+    return {dp0, dp1, dp2};
+    
+}
+
+    int minCameraCover(TreeNode* root) {
+        auto res = dfs(root);
+        // root must be covered, either by its children or by itself
+        return std::min(res[1], res[2]);
+    }
+
+
+
 int cams = 0;
 unordered_map<TreeNode*, int> map;
 void aux(TreeNode* node, TreeNode* parent) {
@@ -77,3 +112,6 @@ int main() {
 
     return 0;
 }
+
+
+

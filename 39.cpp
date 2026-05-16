@@ -17,7 +17,7 @@ void print(vector<int> vector){
     cout << endl;
 }
 
-void backtrancking(vector<int> candidates
+void backtracking(vector<int> candidates
                     , int target
                     , vector<vector<int> > &result
                     , vector<int> prev
@@ -42,7 +42,7 @@ vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
 
     vector<vector<int>> result;
     vector<int> prev;
-    backtrancking(candidates, target,result,prev);
+    backtracking(candidates, target,result,prev);
     print(result);
     return result; // reuslt has repes as 223 != 322 != 232
 
